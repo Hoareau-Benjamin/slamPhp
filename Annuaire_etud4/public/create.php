@@ -1,5 +1,18 @@
 <?php
 session_start();
+if (empty($_SESSION)){
+	header ('location:login.php');
+	exit();
+}
+if ($_SESSION['type']==0){
+    header ('location:index.php');
+}
+?>
+
+
+<?php
+
+
 /**
  * Utilisez un formulaire HTML pour créer une nouvelle entrée
  * dans la table des utilisateurs.
@@ -73,6 +86,15 @@ if (isset($_POST['submit'])) {
     <br><br>
     <input type="submit" name="submit" value="Ajouter">
     <br><br>
+
+     <select name="type" id="type">
+        <option value=0>Utilisateur</option>
+        <option value=1>Admin</option>
+        <?php if ($_SESSION['type']==2) : ?>
+        <option value=2>Super Admin</option>
+        <?php endif; ?>
+        
+    </select>
 </form>
 
 <a href="index.php">Retour</a>

@@ -34,28 +34,28 @@ if (isset($_POST['login'])){
 
     $result = $connection->query($sql);
 
-    //$id = $result->fetchColumn();
-    //$type_compte = $result->fetchColumn($sql);
+    $id = $result->fetchColumn();
+    $type_compte = $result->fetchColumn($sql);
 
-    //echo $sql;
+    echo $sql;
 
-    //$values = $result->fetchAll(PDO::FETCH_ASSOC);
-    //$id = $values[0]['id'];
-    //$type = $values[0]['genre'];
+    $values = $result->fetchAll(PDO::FETCH_ASSOC);
+    $id = $values[0]['id'];
+    $type = $values[0]['genre'];
 
-    //$nbr=$result->rowCount();
-    //echo "nbr = $nbr";
-  //  echo "type = $id";
+    $nbr=$result->rowCount();
+    echo "nbr = $nbr";
+    echo "type = $id";
 
-  //  echo "type = $type";
+    echo "type = $type";
 
-    //if ($nbr == 1){
-      //  session_start();
+    if ($nbr == 1){
+        session_start();
 
-      //  $_SESSION['id'] = $id;
-      //  $_SESSION['pseudo'] = $user;
-      //  $_SESSION['genre'] = $type;
-      //  echo 'Vous êtes connecté !';
+        $_SESSION['id'] = $id;
+        $_SESSION['pseudo'] = $user;
+       $_SESSION['genre'] = $type;
+        echo 'Vous êtes connecté !';
         header ('location: index.php');
 
 

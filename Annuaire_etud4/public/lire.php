@@ -1,12 +1,23 @@
 <?php
-session_start();
+//session_start();
+//if (empty($_SESSION)){
+	//header ('location:login.php');
+	//exit();
+//}
+?>
+
+
+
+
+<?php
+
 /**
  * Fonction pour interroger les informations en fonction du
  * paramètre: ville
  *
  */
 
-if (isset($_POST['submit'])) {
+//if (isset($_POST['submit'])) {
     try  {
         
         require "../config.php";
@@ -25,12 +36,12 @@ if (isset($_POST['submit'])) {
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     }
-}
+//}
 ?>
 <?php require "templates/header.php"; ?>
         
 <?php  
-if (isset($_POST['submit'])) {
+//if (isset($_POST['submit'])) {
     if ($result && $statement->rowCount() > 0) { ?>
         <h2>Liste des employés</h2>
 
@@ -72,14 +83,24 @@ if (isset($_POST['submit'])) {
                 <td><?php echo escape($row["ville"]); ?></td>
                 <td><?php echo escape($row["date"]); ?> </td>
                 
-                <td><a href="update.php?update=<?= $row["id"] ?>">Modifier</a></td>
-                <td><a href="delete.php?delete=<?= $row["id"] ?>">Supprimer</a></td>
+                <?php if (($_SESSION['type']==2) || ($_SESSION['type']==1)) : ?>
+                    <td><a class="text-secondary" href="update.php?update=<?= $row['id']; ?>" >Modifier</a></td>
+                <?php endif; ?>
+                <?php if ($_SESSION['type']==2) : ?>
+                <td><a class="text-danger" href="delete.php?delete=<?= $row['id']; ?>" >Supprimer</a></td>
+
+                <!-- <td><a href="update.php?update=<?//= $row["id"] ?>">Modifier</a></td>
+                <td><a href="delete.php?delete=<?//= $row["id"] ?>">Supprimer</a></td> -->
                 
                 <td><input type="checkbox" name="del[]" value="<?php echo $row['id']; ?>"/></td>
-
+                
+                <?php endif; ?>
             </tr>
-        <?php } ?>
-        </tbody>
+            
+       
+       
+       
+       </tbody>
     </table>
     
     
