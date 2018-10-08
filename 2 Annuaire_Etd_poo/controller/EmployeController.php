@@ -27,8 +27,8 @@ class EmployeController {
 
     public function add() {
         $errors = array();
-
-        if (isset($_POST['submit'])) {
+        
+        if (isset($_POST['Ajouter'])) {
 
             if (empty($_POST['prenom'])) {
                 $errors['prenom'] = 'Le prénom doit être rempli';
@@ -47,6 +47,7 @@ class EmployeController {
             }
             
             if (empty($errors)) {
+               
                 $add = $this->employes->add($_POST);
                 if ($add) {
                     $msg = "L'employé ".$_POST['prenom'].$_POST['nom']." a été ajouté!";
@@ -72,4 +73,26 @@ class EmployeController {
         }
         $this->index($msg); // Redirection vers l'index
     }
+}
+
+
+
+
+
+public function edit() {
+    
+    if (isset($_POST,$_GET['id'])) {
+
+    $edi = $this->employes->edit($_GET['id']);
+    if ($edi) {
+        $msg = "L'employé ". $_GET['id']." a été supprimé.";
+    } 
+    else {
+        $msg = "Impossible de supprimer l'employé!";
+    }
+    $this->index($msg); // Redirection vers l'index
+}
+$employe = $this->employes->getEmploye($_GET['id']);
+include 'view/employe/edit.php';
+   
 }

@@ -22,9 +22,11 @@ else {
 
 
 // Recherche si la page existe
-$c_path = 'controller/'.$c_name.'.php';
+$c_path = 'controller/'.$c_name.'.php'; 
+
 if (file_exists($c_path)) {
 	require_once $c_path;
+
 	if (class_exists($c_name) && method_exists($c_name, $method)) {
 		$c_object = new $c_name();
 		$c_object->$method();

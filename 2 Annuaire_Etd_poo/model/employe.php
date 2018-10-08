@@ -15,12 +15,36 @@ class employe extends ConnexionDB  {
 	}
 
 	public function add($empl)
-	{
+	{  	
 		$sql = $this->cnx->prepare("INSERT INTO employes (prenom,nom,email,age,ville) 
-        VALUES (?,?,?,?,?)");
+		VALUES (?,?,?,?,?)");
+			/*var_dump($sql);
+			echo "<br><br>";
+			var_dump($empl);r
+			exit;*/
 		$sql->execute( array($empl['prenom'],$empl['nom'],$empl['email'],$empl['age'],$empl['ville']) );
+	
 		return $sql->rowCount();
 	}
+
+
+
+
+
+
+	public function add2($empl)
+	{  	
+		$sql = $this->cnx->prepare("INSERT INTO employes (pseudo,mdp,\type,genre,prenom,nom,email,age,ville) 
+		VALUES (?,?,?,?,?,?,?,?,?)");
+		
+		$sql->execute( array($empl['pseudo'],$empl['mdp'],$empl['type'],$empl['genre'],$empl['prenom'],$empl['nom'],$empl['email'],$empl['age'],$empl['ville']) );
+		
+		return $sql->rowCount();
+	}
+
+
+
+
 
 	public function edit($empl,$id)
 	{

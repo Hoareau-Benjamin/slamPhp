@@ -14,7 +14,7 @@
     <label for="ville">ville de résidence</label><br>
     <input type="text" name="ville" id="ville">
     <br><br>
-    <input type="submit" name="submit" value="Ajouter">
+    <input type="submit" name="Ajouter" value="Ajouter">
     <br><br>
 
 	<?php if ($errors) {
